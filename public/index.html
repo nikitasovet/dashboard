@@ -5,15 +5,16 @@
     <title>Dashboard</title>
 
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" media="screen,projection"/>
-    <link rel="stylesheet" href="css/navBarr.css" type="text/css">
+    <link rel="stylesheet" href="css/navBar.css" type="text/css">
+    <link rel="stylesheet" href="css/general.css" type="text/css">
 
 
   </head>
   <body>
 
     <header header></header>
-    <main ng-view></main>
-    <footer footer></footer>
+    <main ng-view id="wrapper"></main>
+
 
   </body>
 
@@ -23,4 +24,15 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
   <script type="text/javascript" src="angularJs/app.js"></script>
+
+  <script type="text/javascript" src="js/plugins/morris/raphael.min.js"></script>
+  <script type="text/javascript" src="js/plugins/morris/morris.min.js"></script>
+  <script type="text/javascript" src="js/plugins/morris/morris-data.js"></script>
+
+  <script type="text/javascript" src="js/plugins/flot/jquery.flot.js"></script>
+  <script type="text/javascript" src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+  <script type="text/javascript" src="js/plugins/flot/jquery.flot.resize.js"></script>
+  <script type="text/javascript" src="js/plugins/flot/jquery.flot.pie.js"></script>
+  <script type="text/javascript" src="js/plugins/flot/flot-data.js"></script>
+
 </html>

@@ -1,58 +1,123 @@
-.navbar-brand { position: relative; z-index: 2; }
+/* Top Navigation */
 
-.navbar-nav.navbar-right .btn { position: relative; z-index: 2; padding: 4px 20px; margin: 10px auto; transition: transform 0.3s; }
-
-.navbar .navbar-collapse { position: relative; overflow: hidden !important; }
-.navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px; }
-
-.navbar .nav-collapse { position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 120px; padding-left: 80px; width: 100%; }
-.navbar.navbar-default .nav-collapse { background-color: #f8f8f8; }
-.navbar.navbar-inverse .nav-collapse { background-color: #222; }
-.navbar .nav-collapse .navbar-form { border-width: 0; box-shadow: none; }
-.nav-collapse>li { float: right; }
-
-.btn.btn-circle { border-radius: 50px; }
-.btn.btn-outline { background-color: transparent; }
-
-.navbar-nav.navbar-right .btn:not(.collapsed) {
-    background-color: rgb(111, 84, 153);
-    border-color: rgb(111, 84, 153);
-    color: rgb(255, 255, 255);
+.top-nav {
+    padding: 0 15px;
 }
 
-.navbar.navbar-default .nav-collapse,
-.navbar.navbar-inverse .nav-collapse {
-    height: auto !important;
-    transition: transform 0.3s;
-    transform: translate(0px,-50px);
-}
-.navbar.navbar-default .nav-collapse.in,
-.navbar.navbar-inverse .nav-collapse.in {
-    transform: translate(0px,0px);
+.top-nav>li {
+    display: inline-block;
+    float: left;
 }
 
+.top-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 20px;
+    color: #999;
+}
+/*menu admin*/
+.top-nav>li>a:hover,
+.top-nav>li>a:focus,
+.top-nav>.open>a,
+.top-nav>.open>a:hover,
+.top-nav>.open>a:focus {
+    color: #fff;
+    background-color: #FF0000;
+}
 
-@media screen and (max-width: 767px) {
-    .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; }
+.top-nav>.open>.dropdown-menu>li>a {
+    white-space: normal;
+}
 
-    .navbar .nav-collapse { margin: 7.5px auto; padding: 0; }
-    .navbar .nav-collapse .navbar-form { margin: 0; }
-    .nav-collapse>li { float: none; }
+/* Side Navigation */
 
-    .navbar.navbar-default .nav-collapse,
-    .navbar.navbar-inverse .nav-collapse {
-        transform: translate(-100%,0px);
-    }
-    .navbar.navbar-default .nav-collapse.in,
-    .navbar.navbar-inverse .nav-collapse.in {
-        transform: translate(0px,0px);
+@media(min-width:768px) {
+    .side-nav {
+        position: fixed;
+        top: 51px;
+        left: 225px;
+        width: 225px;
+        margin-left: -225px;
+        border: none;
+        border-radius: 0;
+        overflow-y: auto;
+        background-color: #222;
+        bottom: 0;
+        overflow-x: hidden;
+        padding-bottom: 40px;
     }
 
-    .navbar.navbar-default .nav-collapse.slide-down,
-    .navbar.navbar-inverse .nav-collapse.slide-down {
-        transform: translate(0px,-100%);
+    .side-nav>li>a {
+        width: 225px;
     }
-    .navbar.navbar-default .nav-collapse.in.slide-down,
-    .navbar.navbar-inverse .nav-collapse.in.slide-down {
-        transform: translate(0px,0px);
+}
+
+.blue:hover,
+.blue:focus {
+  outline: none;
+  background-color: #15A9FA !important;
+}
+
+.grey:hover,
+.grey:focus {
+
+  background-color: #D9D9D3 !important;
+}
+
+.green:hover,
+.green:focus {
+    outline: none;
+    background-color: #45BF55 !important;
+}
+
+
+
+.side-nav>li>ul {
+    padding: 0;
+}
+  /*menu hover couleur écrit*/
+.side-nav>li>ul>li>a {
+    display: block;
+    padding: 10px 15px 10px 38px;
+    text-decoration: none;
+    color: #fff;
+}
+
+/* couleur écrit hover */
+.side-nav>li>ul>li>a:hover {
+    color: #fff;
+}
+
+#wrapper {
+  margin-top: 50px;
+}
+@media (max-width: 768px) {
+  #wrapper {
+    margin-top: 100px;
+  }
+}
+@media (min-width: 768px) {
+  #wrapper {
+    padding-left: 225px;
+  }
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+@font-face {
+	font-family: 'rpg-icons';
+	src:url('../fonts/rpg-icons.eot');
+	src:url('../fonts/rpg-icons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/rpg-icons.woff') format('woff'),
+		url('../fonts/rpg-icons.ttf') format('truetype'),
+		url('../fonts/rpg-icons.svg#rpg-icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+/*@media(min-width:768px) {
+    body {
+        margin-top: 50px;
     }
+}*/

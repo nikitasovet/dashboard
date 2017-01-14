@@ -1,0 +1,17 @@
+[{
+	"name": "Gladiolus Amicitia",
+	"description": "Gladiolus Amicitia est le doyen du groupe, mais aussi l'archétype du bourrin au grand cœur. Au début de sa relation avec Noctis, Gladio n'apprécie pas le jeune prince qu'il trouve particulièrement pédant et sans dynamisme.",
+	"photo": "gladios.jpg",
+	"Age": "23 ans",
+	"birthday": "3 avril",
+	"Arme": "Épée à deux mains"
+
+}, {
+	"name": "Prompto Argentum",
+	"description": "Prompto Argentum est un ami d'enfance de Noctis, avec lequel il a passé une bonne partie de ses études. Toujours très enjoué, il a aussi la réputation d'être un véritable coureur de jupons. Complètement extérieur à la famille royale, Prompto a du mal à trouver sa place dans le groupe, même si sa gentillesse et son optimisme le poussent souvent à faire le maximum pour les autres et en particulier pour Noctis. ",
+	"photo": "prompto.jpg",
+	"Age": "20 ans",
+	"birthday": "25 Octobre",
+	"Arme": "Pistolets"
+
+}]

@@ -1,0 +1,9 @@
+.container{
+  margin-top: 50px;
+  text-align: center;
+}
+.sideBarIcon {
+  font-family:'rpg-icons';
+  font-size:30px !important;
+  vertical-align: middle;
+}
