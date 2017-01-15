@@ -70,7 +70,17 @@
     background-color: #45BF55 !important;
 }
 
+.yellow:hover,
+.yellow:focus {
+    outline: none;
+    background-color: #FFE667 !important;
+}
 
+.purple:hover,
+.purple:focus {
+    outline: none;
+    background-color: #9058E8 !important;
+}
 
 .side-nav>li>ul {
     padding: 0;

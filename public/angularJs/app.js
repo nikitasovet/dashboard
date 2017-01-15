@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module('myApp', ['ngRoute']);
+  var app = angular.module('myApp', ['ngRoute', 'angularLoad']);
 
   app.directive('header',function(){
     return{
@@ -9,14 +9,7 @@
   });
 
   app.controller('homeController', function(DashboardService, $scope) {
-    $scope.personnagesOffensif = {};
-    $scope.personnagesDefensif = {};
-    DashboardService.offensifgetAll().then(function(response) {
-        $scope.personnagesOffensif = response.data;
-    });
-    DashboardService.defensifgetAll().then(function(response) {
-        $scope.personnagesDefensif = response.data;
-    });
+
   });
 
   app.controller('typeDefensifController',function(DashboardService, $scope){
@@ -59,13 +52,53 @@
 
   app.controller('epeeController',function(){});
   app.controller('sceptreController',function(){});
+  app.controller('chartsController',function(){});
+  app.controller('contactController',function(){});
 
   app.config(['$routeProvider',function($routeProvider){
     $routeProvider
     .when('/',{
       templateUrl:'partials/home/home.html',
       controller:'homeController',
-      controllerAs:'homeCtrl'
+      controllerAs:'homeCtrl',
+      resolve: {
+        loadMyService: ['angularLoad', function(angularLoad) {
+
+          angularLoad.loadScript('js/plugins/morris/raphael.min.js').then(function() {
+            angularLoad.loadScript('js/plugins/morris/morris.js').then(function() {
+                angularLoad.loadScript('js/plugins/morris/morris-data.js').then(function() {
+                  console.log('aaaaa');
+                  console.log($(window).Morris);
+                });
+            });
+          })
+
+
+              // <!-- Morris Charts JavaScript -->
+              // <script src="js/plugins/morris/raphael.min.js"></script>
+              // <script src="js/plugins/morris/morris.min.js"></script>
+              // <script src="js/plugins/morris/morris-data.js"></script>
+              //
+              // <!-- Flot Charts JavaScript -->
+              // <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
+              // <script type="text/javascript" src="js/plugins/flot/jquery.flot.js"></script>
+              // <script type="text/javascript" src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+              // <script type="text/javascript" src="js/plugins/flot/jquery.flot.resize.js"></script>
+              // <script type="text/javascript" src="js/plugins/flot/jquery.flot.pie.js"></script>
+              // <script type="text/javascript" src="js/plugins/flot/flot-data.js"></script>
+          console.log('ici');
+          // return $ocLazyLoad.load([
+          //   'js/plugins/morris/raphael.min.js',
+          //   'js/plugins/morris/morris.min.js',
+          //   'js/plugins/morris/morris-data.js',
+          //   'js/plugins/flot/jquery.flot.js',
+          //   'js/plugins/flot/jquery.flot.tooltip.min.js',
+          //   'js/plugins/flot/jquery.flot.resize.js',
+          //   'js/plugins/flot/jquery.flot.pie.js',
+          //   'js/plugins/flot/flot-data.js'
+          // ]);
+        }]
+      }
     })
     .when('/typeOffensif',{
       templateUrl:'partials/typeOffensif.html',
@@ -101,6 +134,12 @@
       controller:'personnageDefController',
       controllerAs:'personnageDefCtrl'
     })
+
+    .when('/contact',{
+    templateUrl:'partials/contact.html',
+    controller:'contactController',
+    controllerAs:'contactCtrl'
+  })
 
   }]);
 
