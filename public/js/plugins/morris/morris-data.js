@@ -1,8 +1,7 @@
 // Morris.js Charts sample data for SB Admin template
 
 $(function() {
-
-    console.log('morris data init');
+    console.log('morris data');
     // Area Chart
     Morris.Area({
         element: 'morris-area-chart',

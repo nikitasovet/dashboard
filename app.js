@@ -1,38 +1,30 @@
-require('./api/data/db.js');
+require('./api/data/db.js'); // Import connexion mongo
 var express = require('express');
 var app = express();
 var path = require('path');
-var bodyParser = require('body-parser');
+var routes = require('./api/routes'); // Import du router
 
 
-
-var routes = require('./api/routes');
-
-
-// Define the port to run on
+// Port d'écoute
 app.set('port', 3000);
 
-// Add middleware to console log every request
+// Journal a chaque requete
 app.use(function(req, res, next) {
   console.log(req.method, req.url);
   next();
 });
 
-// Set static directory before defining routes
+// Définition des dossiers static
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/fonts', express.static(__dirname + '/fonts'));
 
-// Enable parsing of posted forms
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// Add some routing
+// Ajout du router
 app.use('/api', routes);
 
 
-// Listen for requests
+// Ecoute des requetes
 var server = app.listen(app.get('port'), function() {
   var port = server.address().port;
-  console.log('Magic happens on port ' + port);
+  console.log('Serveur démarré sur le port ' + port);
 });

@@ -42,6 +42,6 @@ process.on('SIGTERM', function() {
     });
 });
 
-// BRING IN YOUR SCHEMAS & MODELS
+// Import des modèles mongo
 require('./defensif.model');
 require('./offensif.model');

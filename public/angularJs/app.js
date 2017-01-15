@@ -1,181 +1,117 @@
 (function(){
-  var app = angular.module('myApp', ['ngRoute', 'angularLoad']);
+  // Déclaration APP
+  var app = angular.module('myApp', ['ngRoute']);
 
+  // Directive navbar
   app.directive('header',function(){
-    return{
+    return {
       restrict:'A',
-      templateUrl:'partials/common/header.html'
+      templateUrl:'partials/common/header.html',
+      link: function(scope, elem, attr) {
+        // Lorsque la navbar est chargée, on met le focus sur le premier élement
+        $('a.blue').focus();
+      }
     }
   });
 
-  app.controller('homeController', function(DashboardService, $scope) {
-
-  });
-
+  // Controller page typeDefensif
   app.controller('typeDefensifController',function(DashboardService, $scope){
     $scope.defensifs = [];
-        DashboardService.defensifgetAll().then(function(response) {
-            // console.log(response.data);
-            $scope.defensifs = response.data;
-        });
+    DashboardService.defensifgetAll().then(function(response) {
+      $scope.defensifs = response.data; // Rempli la variable avec les données
+    });
   });
 
+  // Controller page typeOffensif
   app.controller('typeOffensifController',function(DashboardService, $scope){
     $scope.offensifs = [];
-        DashboardService.offensifgetAll().then(function(response) {
-            // console.log(response.data);
-            $scope.offensifs = response.data;
-        });
+    DashboardService.offensifgetAll().then(function(response) {
+      $scope.offensifs = response.data; // Rempli la variable avec les données
+    });
   });
 
-    app.controller('personnageOfController',function(DashboardService, $scope, $routeParams){
-      var persoOfId = $routeParams.persoOfId;
-       console.log(persoOfId);
-       $scope.personnage = {};
-       DashboardService.offensifgetOne(persoOfId).then(function(response) {
-           $scope.personnage = response.data;
-           console.log($scope.personnage);
-       });
-
+  // Controller personnages offensifs
+  app.controller('personnageOfController',function(DashboardService, $scope, $routeParams){
+    var persoOfId = $routeParams.persoOfId; // On récupère l'id qui est dans l'url
+    $scope.personnage = {};
+    DashboardService.offensifgetOne(persoOfId).then(function(response) {
+      $scope.personnage = response.data; // Rempli la variable avec les données
     });
+  });
 
-    app.controller('personnageDefController',function(DashboardService, $scope, $routeParams){
-      var persoDefId = $routeParams.persoDefId;
-       console.log(persoDefId);
-       $scope.personnage = {};
-       DashboardService.defensifgetOne(persoDefId).then(function(response) {
-           $scope.personnage = response.data;
-           console.log($scope.personnage);
-       });
-
+  // Controller personnages defensifs
+  app.controller('personnageDefController',function(DashboardService, $scope, $routeParams){
+    var persoDefId = $routeParams.persoDefId;  // On récupère l'id qui est dans l'url
+    $scope.personnage = {};
+    DashboardService.defensifgetOne(persoDefId).then(function(response) {
+      $scope.personnage = response.data; // Rempli la variable avec les données
     });
+  });
 
-  app.controller('epeeController',function(){});
-  app.controller('sceptreController',function(){});
-  app.controller('chartsController',function(){});
-  app.controller('contactController',function(){});
-
+  // Définition du router
   app.config(['$routeProvider',function($routeProvider){
-    $routeProvider
-    .when('/',{
-      templateUrl:'partials/home/home.html',
-      controller:'homeController',
-      controllerAs:'homeCtrl',
-      resolve: {
-        loadMyService: ['angularLoad', function(angularLoad) {
-
-          angularLoad.loadScript('js/plugins/morris/raphael.min.js').then(function() {
-            angularLoad.loadScript('js/plugins/morris/morris.js').then(function() {
-                angularLoad.loadScript('js/plugins/morris/morris-data.js').then(function() {
-                  console.log('aaaaa');
-                  console.log($(window).Morris);
-                });
-            });
-          })
-
-
-              // <!-- Morris Charts JavaScript -->
-              // <script src="js/plugins/morris/raphael.min.js"></script>
-              // <script src="js/plugins/morris/morris.min.js"></script>
-              // <script src="js/plugins/morris/morris-data.js"></script>
-              //
-              // <!-- Flot Charts JavaScript -->
-              // <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
-              // <script type="text/javascript" src="js/plugins/flot/jquery.flot.js"></script>
-              // <script type="text/javascript" src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-              // <script type="text/javascript" src="js/plugins/flot/jquery.flot.resize.js"></script>
-              // <script type="text/javascript" src="js/plugins/flot/jquery.flot.pie.js"></script>
-              // <script type="text/javascript" src="js/plugins/flot/flot-data.js"></script>
-          console.log('ici');
-          // return $ocLazyLoad.load([
-          //   'js/plugins/morris/raphael.min.js',
-          //   'js/plugins/morris/morris.min.js',
-          //   'js/plugins/morris/morris-data.js',
-          //   'js/plugins/flot/jquery.flot.js',
-          //   'js/plugins/flot/jquery.flot.tooltip.min.js',
-          //   'js/plugins/flot/jquery.flot.resize.js',
-          //   'js/plugins/flot/jquery.flot.pie.js',
-          //   'js/plugins/flot/flot-data.js'
-          // ]);
-        }]
-      }
+    $routeProvider.when('/', {
+      templateUrl:'partials/home.html'
     })
-    .when('/typeOffensif',{
+    .when('/typeOffensif', {
       templateUrl:'partials/typeOffensif.html',
       controller:'typeOffensifController',
       controllerAs:'typeOffensifCtrl'
     })
-    .when('/typeDefensif',{
+    .when('/typeDefensif', {
       templateUrl:'partials/typeDefensif.html',
       controller:'typeDefensifController',
       controllerAs:'typeDefensifCtrl'
     })
-
-    .when('/epee',{
-      templateUrl:'partials/epee.html',
-      controller:'epeeController',
-      controllerAs:'epeeCtrl'
+    .when('/epee', {
+      templateUrl:'partials/epee.html'
     })
-
-    .when('/sceptre',{
-      templateUrl:'partials/sceptre.html',
-      controller:'sceptreController',
-      controllerAs:'sceptreCtrl'
+    .when('/sceptre', {
+      templateUrl:'partials/sceptre.html'
     })
-
-    .when('/personnageOffensif/:persoOfId',{
+    .when('/personnageOffensif/:persoOfId', {
       templateUrl:'partials/personnageOffensif.html',
       controller:'personnageOfController',
       controllerAs:'personnageOfCtrl'
     })
-
-    .when('/personnageDefensif/:persoDefId',{
+    .when('/personnageDefensif/:persoDefId', {
       templateUrl:'partials/personnageDefensif.html',
       controller:'personnageDefController',
       controllerAs:'personnageDefCtrl'
     })
-
-    .when('/contact',{
-    templateUrl:'partials/contact.html',
-    controller:'contactController',
-    controllerAs:'contactCtrl'
-  })
-
+    .when('/contact', {
+      templateUrl:'partials/contact.html'
+    });
   }]);
 
+
+  // Définition du service DashboardService
   app.factory('DashboardService', function($http) {
-        return {
-            defensifgetAll: defensifgetAll,
-            defensifgetOne: defensifgetOne,
-            offensifgetAll: offensifgetAll,
-            offensifgetOne: offensifgetOne,
+    return {
+        defensifgetAll: defensifgetAll, // Retourne tous les personnages defensifs
+        defensifgetOne: defensifgetOne, // Retourne un seul personnage defensif
+        offensifgetAll: offensifgetAll, // Retourne tous les personnages offensifs
+        offensifgetOne: offensifgetOne  // Retourne un seul personnage offensif
+    };
 
-        };
+    function defensifgetAll() {
+        return $http.get('/api/defensif').then(complete).catch(failed);
+    }
+    function defensifgetOne(defensifid) {
+        return $http.get('/api/defensif/' + defensifid).then(complete).catch(failed);
+    }
+    function offensifgetAll() {
+        return $http.get('/api/offensif').then(complete).catch(failed);
+    }
+    function offensifgetOne(offensifid) {
+        return $http.get('/api/offensif/' + offensifid).then(complete).catch(failed);
+    }
+    function complete(response) {
+        return response;
+    }
+    function failed(error) {
+        console.log(error.statusText);
+    }
+  });
 
-        function defensifgetAll() {
-            return $http.get('/api/defensif').then(complete).catch(failed);
-        }
-
-        function defensifgetOne(defensifid) {
-            return $http.get('/api/defensif/' + defensifid).then(complete).catch(failed);
-        }
-
-        function offensifgetAll() {
-            return $http.get('/api/offensif').then(complete).catch(failed);
-        }
-
-        function offensifgetOne(offensifid) {
-            return $http.get('/api/offensif/' + offensifid).then(complete).catch(failed);
-        }
-
-        function complete(response) {
-            return response;
-        }
-
-        function failed(error) {
-            console.log(error.statusText);
-        }
-
-    });
-
-}())
+}());

@@ -1,15 +1,12 @@
 var mongoose = require('mongoose');
-var Defensif = mongoose.model('defensif');
+var Defensif = mongoose.model('defensif'); // Import du schema Defensif
 
+
+// Cette méthode retourne tous les personnages Défensifs
 module.exports.defensifGetAll = (req, res) => {
-    console.log('GET the defensif');
-    console.log(req);
-
     Defensif
         .find()
         .exec(function(err, defensifs) {
-            console.log(err);
-            console.log(defensifs);
             if (err) {
                 console.log("Error finding defensifs");
                 res
@@ -23,11 +20,10 @@ module.exports.defensifGetAll = (req, res) => {
         });
 };
 
+// Cette méthode retourne un seul personnage Défensif en fonction de l'ID en paramètre
 module.exports.defensifGetOne = (req, res) => {
     var id = req.params.defensifId;
-
-    console.log('Get defensifId', id);
-
+    
     Defensif
         .findById(id)
         .exec(function(err, defensif) {

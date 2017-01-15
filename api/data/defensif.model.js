@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+// Schema pour les personnages Defensif
 var defensifSchema = new mongoose.Schema({
     name: {
         type: String,

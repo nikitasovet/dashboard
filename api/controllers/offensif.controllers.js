@@ -1,15 +1,11 @@
 var mongoose = require('mongoose');
-var Offensif = mongoose.model('offensif');
+var Offensif = mongoose.model('offensif'); // Import du schema Offensif
 
+// Cette méthode retourne tous les personnages offensifs
 module.exports.offensifGetAll = (req, res) => {
-    console.log('GET the offensif');
-    console.log(req);
-
     Offensif
         .find()
         .exec(function(err, offensifs) {
-            console.log(err);
-            console.log(offensifs);
             if (err) {
                 console.log("Error finding offensifs");
                 res
@@ -23,10 +19,9 @@ module.exports.offensifGetAll = (req, res) => {
         });
 };
 
+// Cette méthode retourne un seul personnage Offensif en fonction de l'ID en paramètre
 module.exports.offensifGetOne = (req, res) => {
     var id = req.params.offensifId;
-
-    console.log('Get offensifId', id);
 
     Offensif
         .findById(id)

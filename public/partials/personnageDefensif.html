@@ -1,14 +1,30 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-xs-12">
-      <p><img ng-src="images/{{personnage.photo}}" alt="" />
-      <p>{{personnage.name}}</p>
-      <p>{{personnage.Age}}</p>
-      <p>{{personnage.birthday}}</p>
-      <p>{{personnage.description}}</p>
-      <p>{{personnage.Arme}}</p>
+    <div class="col-xs-12 col-sm-4">
+      <img ng-src="images/{{personnage.photo}}" alt="" class="img-responsive avatar"/>
     </div>
-
+    <div class="col-xs-12 col-sm-8">
+      <br/>
+      <h1>{{personnage.name}}</h1>
+      <br/>
+      <table class="table">
+        <tr>
+          <td class="persoTdBold">Age</td>
+          <td>{{personnage.Age}}</td>
+        </tr>
+        <tr>
+          <td class="persoTdBold">Date d'anniversaire</td>
+          <td>{{personnage.birthday}}</td>
+        </tr>
+        <tr>
+          <td class="persoTdBold">Description</td>
+          <td>{{personnage.description}}</td>
+        </tr>
+        <tr>
+          <td class="persoTdBold">Arme</td>
+          <td>{{personnage.Arme}}</td>
+        </tr>
+      </table>
+    </div>
   </div>
-
 </div>
